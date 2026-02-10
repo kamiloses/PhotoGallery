@@ -1,0 +1,27 @@
+header{
+  margin: 0;
+  padding: 0;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  background-color: #1e1e2f;
+}
+
+nav{
+display: flex;
+justify-content: end;
+  margin-left: auto;
+}
+ul{
+
+  list-style: none;
+  gap: 20px;
+  display: flex;
+}
+a {
+  text-decoration: none;
+  color: #f4f4f4;
+}
+a:hover {
+  color: #f4d03f;
+}
