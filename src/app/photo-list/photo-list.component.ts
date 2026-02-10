@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import {Photo} from './photo-card/Photo';
 import {PhotoCardComponent} from './photo-card/photo-card.component';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-photo-list',
   imports: [
-    PhotoCardComponent
+    PhotoCardComponent,
+    RouterLink
   ],
   templateUrl: './photo-list.component.html',
   styleUrl: './photo-list.component.css',

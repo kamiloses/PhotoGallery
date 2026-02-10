@@ -1,6 +1,61 @@
+<section class="gallery-header">
 <h2>Photo Gallery</h2>
+<div class="filters">
+
+  <div class="date-filter">
+    <label>From:<input type="date"> </label>
+    <label>To:<input type="date"></label>
+  </div>
+
+  <div class="tag-filter">
+    <label>tag<input type="text"> </label>
+  </div>
+
+  <div class="favorites-filter">
+    <label><input type="checkbox">Only Favorites</label>
+  </div>
+
+</div>
+
+</section>
 <section class="photo-grid">
   @for (photoItem of photoList; track photoItem.id) {
-    <app-photo-card [photo]="photoItem"></app-photo-card>
+    <app-photo-card [photo]="photoItem"  [routerLink]="'/photo/' + photoItem.id"></app-photo-card>
   }
 </section>
+<section class="pagination">
+
+  <nav aria-label="pagination">
+    <ul class="pagination">
+      <li>
+        <a href="">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="visuallyhidden">previous set of pages</span>
+        </a>
+      </li>
+      <li>
+        <a href=""><span class="visuallyhidden">page </span>1</a>
+      </li>
+      <li>
+        <a href="" aria-current="page">
+          <span class="visuallyhidden">page </span>2
+        </a>
+      </li>
+      <li>
+        <a href=""> <span class="visuallyhidden">page </span>3 </a>
+      </li>
+      <li>
+        <a href=""> <span class="visuallyhidden">page </span>4 </a>
+      </li>
+      <li>
+        <a href="">
+        <span class="visuallyhidden">next set of pages</span
+        ><span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+</section>
+
+
