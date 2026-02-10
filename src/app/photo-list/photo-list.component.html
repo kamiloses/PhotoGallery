@@ -1,1 +1,6 @@
-<
+<h2>Photo Gallery</h2>
+<section class="photo-grid">
+  @for (photoItem of photoList; track photoItem.id) {
+    <app-photo-card [photo]="photoItem"></app-photo-card>
+  }
+</section>

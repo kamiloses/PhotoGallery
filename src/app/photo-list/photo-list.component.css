@@ -1,0 +1,10 @@
+section{
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr;
+
+}
+h2{
+  text-align: center;
+  margin-bottom: 20px;
+}

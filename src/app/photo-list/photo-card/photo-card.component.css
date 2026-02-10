@@ -1,0 +1,19 @@
+.photo-card {
+width: 100%;
+}
+
+.photo-card img {
+  width: 700px;
+
+}
+.title{
+  text-align: center;
+
+}
+.description{
+  text-align: center;
+
+
+}
+
+
