@@ -1,19 +1,43 @@
-import { Component } from '@angular/core';
-import {Photo} from './photo-card/Photo';
+import {Component, OnInit} from '@angular/core';
 import {PhotoCardComponent} from './photo-card/photo-card.component';
-import {RouterLink} from '@angular/router';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
+import {Photo} from './photo-card/Photo';
+import {PaginationComponent} from '../../pagination/pagination.component';
 
 @Component({
   selector: 'app-photo-list',
   imports: [
     PhotoCardComponent,
-    RouterLink
+    RouterLink,
+    PaginationComponent
   ],
   templateUrl: './photo-list.component.html',
   styleUrl: './photo-list.component.css',
 })
-export class PhotoListComponent {
-  photoList: Photo[] = [
+
+
+
+export class PhotoListComponent implements OnInit {
+
+  public constructor(private route: ActivatedRoute) {
+  }
+
+  filteredPhotos:Photo[]=[];
+
+
+  ngOnInit(): void {
+    const path = this.route.snapshot.routeConfig?.path;
+
+    if (path === 'favorites') {
+      this.filteredPhotos = this.photoList.filter(p => p.isFavorite);
+      console.log("favorites")
+    } else {
+      console.log("else")
+      this.filteredPhotos = this.photoList;
+    }
+    }
+
+  photoList:Photo[] = [
     { id: 1, title: 'Sunset Mountains', url: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&h=1080', description: 'Sunset over rugged mountains', category: 'Nature', createdAt: new Date(), isFavorite: false },
     { id: 2, title: 'Night Skyline', url: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=1920&h=1080', description: 'Night city skyline with lights and reflections', category: 'Urban', createdAt: new Date(), isFavorite: true },
     { id: 3, title: 'Forest Path', url: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1920&h=1080', description: 'Walking path in green forest', category: 'Nature', createdAt: new Date(), isFavorite: false },
@@ -35,6 +59,8 @@ export class PhotoListComponent {
     { id: 19, title: 'Wildflowers', url: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1920&h=1080', description: 'Field of wildflowers', category: 'Nature', createdAt: new Date(), isFavorite: false },
     { id: 20, title: 'Cliff Coast', url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&h=1080', description: 'Cliff shoreline view', category: 'Nature', createdAt: new Date(), isFavorite: false }
   ];
+
+
 
 
 
