@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Photo} from './photo-card/Photo';
 import {Observable, of, throwError} from 'rxjs';
 import { delay } from 'rxjs/operators';
-import {PHOTO_SEED} from '../photo-card-details/photo.seed';
+import {PHOTO_SEED} from '../../data/photo.seed';
 @Injectable({
   providedIn: 'root',
 })
@@ -11,7 +11,7 @@ export class PhotoListService {
   public constructor() {
   }
 
-  public getPhotoList(filter: FilterModel | undefined): Observable<Photo[]> {
+  public getPhotoList(filter: FilterModel): Observable<Photo[]> {
     if (filter?.dateFrom && filter?.dateTo && filter.dateFrom > filter.dateTo) {
       return throwError(() => new Error('dateFrom cannot be later than dateTo'));
     }
@@ -25,7 +25,6 @@ export class PhotoListService {
         (!filter.category || photo.category === filter.category)
       );
     }
-
     return of(result).pipe(delay(500));
   }
 

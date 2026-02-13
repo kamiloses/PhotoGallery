@@ -1,21 +1,29 @@
-  <section class="gallery-header">
+<section class="gallery-header">
   <h2>Photo Gallery</h2>
   <div class="filters">
 
     <div class="date-filter">
-      <label>From:<input type="date"> </label>
-      <label>To:<input type="date"></label>
+      <label>From:
+        <input type="date" [(ngModel)]="filter.dateFrom" name="dateFrom"
+               (ngModelChange)="onFilterChange()">
+      </label>
+      <label>To:
+        <input type="date" [(ngModel)]="filter.dateTo" name="dateTo"
+               (ngModelChange)="onFilterChange()">
+      </label>
     </div>
 
     <div class="category-filter">
-      <label>category<input type="text"> </label>
+      <label>Category:
+        <input type="text" [(ngModel)]="filter.category" name="category"
+               (ngModelChange)="onFilterChange()">
+      </label>
     </div>
 
-
   </div>
+</section>
 
-  </section>
-  <section class="photo-grid">
+<section class="photo-grid">
     @for (photoItem of filteredPhotos(); track photoItem.id) {
       <app-photo-card [photo]="photoItem"  [routerLink]="'/photo/' + photoItem.id"></app-photo-card>
     }

@@ -3,14 +3,14 @@ import {PhotoCardComponent} from './photo-card/photo-card.component';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {Photo} from './photo-card/Photo';
 import {FilterModel, PhotoListService} from './photo-list.service';
-import {catchError, map} from 'rxjs/operators';
-import {of} from 'rxjs';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-photo-list',
   imports: [
     PhotoCardComponent,
-    RouterLink
+    RouterLink,
+    FormsModule
   ],
   templateUrl: './photo-list.component.html',
   styleUrl: './photo-list.component.css',
@@ -22,6 +22,17 @@ export class PhotoListComponent implements OnInit {
   public constructor(private route: ActivatedRoute, private photoListService: PhotoListService) {
   }
 
+  filter: FilterModel = {};
+
+  onFilterChange(): void {
+    const filterToSend: FilterModel = {
+      dateFrom: this.filter.dateFrom ? new Date(this.filter.dateFrom) : undefined,
+      dateTo:   this.filter.dateTo   ? new Date(this.filter.dateTo)   : undefined,
+      category: this.filter.category
+    };
+
+    this.getPhotoList(filterToSend);
+  }
   isLoading = signal(false);
   errorMessage = signal('');
 
@@ -29,29 +40,23 @@ export class PhotoListComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.getPhotoList()
+    this.getPhotoList(this.filter)
 
 
   }
 
-  getPhotoList(filter?: FilterModel) {
+  getPhotoList(filter: FilterModel) {
     this.isLoading.set(true);
     const path = this.route.snapshot.routeConfig?.path;
 
     this.photoListService.getPhotoList(filter)
-      .pipe(
-        catchError(err => {
-          this.errorMessage.set(err.message);
-          return of([]);
-        })
-      )
       .subscribe({
         next: (value) => {
+          console.log("WARTOSCI" + value)
           this.filteredPhotos.set(value);
           if (path === 'favorites') {
             this.filteredPhotos.set(this.filteredPhotos().filter(p => p.isFavorite));
           }
-          console.log("ZDJECIA po pobraniu:", this.filteredPhotos);
           this.isLoading.set(false);
         },
         error: (err) => {
