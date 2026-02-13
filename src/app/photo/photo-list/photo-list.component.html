@@ -15,8 +15,12 @@
 
     <div class="category-filter">
       <label>Category:
-        <input type="text" [(ngModel)]="filter.category" name="category"
-               (ngModelChange)="onFilterChange()">
+        <select [(ngModel)]="filter.category" name="category" (ngModelChange)="onFilterChange()">
+          <option value="">All</option>
+          @for (category of photoCategories; track category) {
+            <option [value]="category">{{ category }}</option>
+          }
+            </select>
       </label>
     </div>
 

@@ -1,10 +1,46 @@
-.photo-grid{
+.gallery-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.gallery-header h2 {
+  color: #ff6b6b;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 10px;
+}
+
+.date-filter, .category-filter {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+
+.filters label {
+  color: #1e1e2f;
+}
+
+input[type="date"], select {
+  background-color: #fff8e7;
+  border: 2px solid #ff6b6b;
+  color: #1e1e2f;
+  border-radius: 6px;
+  padding: 4px 8px;
+}
+
+input[type="date"]:focus, select:focus {
+  border-color: #f44336;
+  outline: none;
+}
+
+.photo-grid {
   display: grid;
   justify-items: center;
   grid-template-columns: 1fr 1fr;
-
-}
-h2{
-  text-align: center;
-  margin-bottom: 20px;
+  gap: 20px;
 }

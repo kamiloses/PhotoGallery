@@ -4,6 +4,8 @@ import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {Photo} from './photo-card/Photo';
 import {FilterModel, PhotoListService} from './photo-list.service';
 import {FormsModule} from '@angular/forms';
+import {of} from 'rxjs';
+import {PhotoCategory} from '../../data/photo.enum';
 
 @Component({
   selector: 'app-photo-list',
@@ -23,11 +25,13 @@ export class PhotoListComponent implements OnInit {
   }
 
   filter: FilterModel = {};
+  photoCategories = Object.values(PhotoCategory);
+
 
   onFilterChange(): void {
     const filterToSend: FilterModel = {
       dateFrom: this.filter.dateFrom ? new Date(this.filter.dateFrom) : undefined,
-      dateTo:   this.filter.dateTo   ? new Date(this.filter.dateTo)   : undefined,
+      dateTo:   this.filter.dateTo   ? new Date(this.filter.dateTo)   : undefined,//todo
       category: this.filter.category
     };
 
@@ -52,7 +56,6 @@ export class PhotoListComponent implements OnInit {
     this.photoListService.getPhotoList(filter)
       .subscribe({
         next: (value) => {
-          console.log("WARTOSCI" + value)
           this.filteredPhotos.set(value);
           if (path === 'favorites') {
             this.filteredPhotos.set(this.filteredPhotos().filter(p => p.isFavorite));
@@ -65,5 +68,6 @@ export class PhotoListComponent implements OnInit {
         }
       });
   }
+
 }
 
