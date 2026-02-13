@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import {PhotoListComponent} from './photo/photo-list/photo-list.component';
 import {PhotoCardDetailsComponent} from './photo/photo-card-details/photo-card-details.component';
 import {PhotoFormComponent} from './photo/photo-form/photo-form.component';
+import {PhotoListComponent} from './photo/photo-list/photo-list.component';
 
 export const routes: Routes = [{
 

@@ -1,4 +1,4 @@
-import {Component, input} from '@angular/core';
+import {Component, input, OnChanges, SimpleChanges} from '@angular/core';
 import {Photo} from './Photo';
 
 @Component({
@@ -11,5 +11,8 @@ export class PhotoCardComponent {
 
 
    photo=input.required<Photo>();
+
+
+
 
 }

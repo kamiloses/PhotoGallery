@@ -1,6 +1,7 @@
+
 <article class="photo-card">
   <h3 class="title">{{ photo().title }}</h3>
   <img [src]="photo().url" [alt]="photo().title">
-  <span class="category">{{ photo().category }}</span>
+  <span class="category">{{ photo()?.category }}</span>
   <button>{{ photo().isFavorite ? '★' : '☆' }}</button>
 </article>
